@@ -1,0 +1,58 @@
+CREATE TABLE if not exists position (
+    pos_id integer primary key not null,
+    pos_name varchar(50) not null
+);
+
+CREATE TABLE if not exists japanese (
+    level_id integer not null,
+    level_name varchar(50) not null,
+	PRIMARY KEY (level_id)
+);
+
+CREATE TABLE if not exists department (
+    dept_id integer primary key not null,
+    dept_name varchar(50) not null
+);
+
+CREATE TABLE if not exists employee (
+    emp_Id integer not null,
+    emp_name varchar(50)  not null,
+    date_of_birth date  not null,
+    gender varchar(10)  not null,
+    martial_stauts varchar(10)  not null,
+    email varchar(100),
+    phone varchar(100),
+	level_id integer not null,
+	dept_id integer not null,
+	pos_id integer not null,
+	PRIMARY KEY (emp_Id),
+    	foreign key(level_id) references japanese(level_id),
+	foreign key(dept_id) references department(dept_id),
+	foreign key (pos_id) references position(pos_id)
+);
+
+insert into position values (1,'JSE');
+insert into position values (2,'SE');
+insert into position values (3,'SSE');
+insert into position values (4,'TL');
+insert into position values (5,'PL');
+insert into position values (6,'PM');
+insert into position values (7,'Junior HR');
+insert into position values (8,'Senior HR');
+
+insert into japanese values(1,'N1');
+insert into japanese values(2,'N2');
+insert into japanese values(3,'N3');
+insert into japanese values(4,'N4');
+insert into japanese values(5,'N5');
+insert into japanese values(6,'Beginner');
+
+insert into department values(1,'System Development');
+insert into department values(2,'Infra');
+insert into department values(3,'HR');
+insert into department values(4,'Finance');
+
+insert into employee values(1,'susu','2020-04-22','female','single','','',3,1,1);
+insert into employee values(2,'myamya','2010-04-22','female','married','','',2,1,3);
+
+
